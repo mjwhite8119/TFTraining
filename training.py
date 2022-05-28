@@ -45,6 +45,9 @@ history = model.fit(dataGen(xTrain, yTrain, 100, 1),
 #### STEP 9 - SAVE THE MODEL
 model.save('model.h5')
 print('Model Saved')
+import tensorflow as tf
+model = tf.keras.models.load_model('model.h5')
+tf.saved_model.save(model,'model')
 
 #### STEP 10 - PLOT THE RESULTS
 plt.plot(history.history['loss'])
