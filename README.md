@@ -43,6 +43,12 @@ To use the python scripts:
     pip install openvino-dev[tensorflow2] FAILS!!
 
 Can't use the python scripts on M1 right now because unable to install rawpy.  See [Python-Image-Converter](https://github.com/achimoraites/Python-Image-Converter/issues/4) issue
+
+Install the Runtime since it has the converter.  It gets installed into `/opt/intel/openvino_2022`
+
+Then setup the environment by putting this in `.bashrc`
+
+    source /opt/intel/openvino_2022/setupvars.sh
   
 ### Get data from the Raspberry Pi
 
