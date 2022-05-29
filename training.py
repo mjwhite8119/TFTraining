@@ -4,7 +4,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from sklearn.model_selection import train_test_split
 from img_utils import *
 
-
 #### STEP 1 - INITIALIZE DATA
 path = 'DataCollected'
 data = importDataInfo(path)
@@ -34,22 +33,20 @@ print('Total Validation Images: ',len(xVal))
 
 #### STEP 7 - CREATE MODEL
 model = createModel()
+model.summary()
 
 #### STEP 8 - TRAINNING
 history = model.fit(dataGen(xTrain, yTrain, 100, 1),
-                                  steps_per_epoch=100,
-                                  epochs=10,
-                                  validation_data=dataGen(xVal, yVal, 50, 0),
-                                  validation_steps=50)
+                            steps_per_epoch=100,
+                            epochs=10,
+                            validation_data=dataGen(xVal, yVal, 50, 0),
+                            validation_steps=50)
 
-#### STEP 9 - SAVE THE MODEL
+#### STEP 9 - SAVE THE KERAS H5 MODEL
 model.save('model.h5')
 print('Model Saved')
-import tensorflow as tf
-model = tf.keras.models.load_model('model.h5')
-tf.saved_model.save(model,'model')
 
-#### STEP 10 - PLOT THE RESULTS
+#### STEP 11 - PLOT THE RESULTS
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.legend(['Training', 'Validation'])
