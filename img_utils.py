@@ -56,7 +56,10 @@ def balanceData(data,display=True):
     for j in range(nBin):
         binDataList = []
         for i in range(len(data['zaxisRotate'])):
-            if data['zaxisRotate'][i] >= bins[j] and data['zaxisRotate'][i] <= bins[j + 1]:
+            zaxis = data['zaxisRotate'][i]
+            xaxis = data['xaxisSpeed'][i]
+            # Balance data and only use images where robot is moving
+            if zaxis >= bins[j] and zaxis <= bins[j + 1] or xaxis < 0.4:
                 binDataList.append(i)
         binDataList = shuffle(binDataList)
         binDataList = binDataList[samplesPerBin:]
