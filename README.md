@@ -10,7 +10,7 @@ Used to train Tensorflow models
     pip install tensorflow-metal
     conda install -c conda-forge -y pandas jupyter
 
-    python -m pip install -r requirements.txt
+    python3 -m pip install -r requirements.txt
 
 ### Setup Jupyter Notebook
 Make a conda environment accesible from Jupyter Notebook, where `tf-env` is your conda environment:
@@ -49,6 +49,14 @@ Install the Runtime since it has the converter.  It gets installed into `/opt/in
 Then setup the environment by putting this in `.bashrc`
 
     source /opt/intel/openvino_2022/setupvars.sh
+
+### Convert saved_model.pb to Blob file
+
+`--input_shape=[1,66,200,3]` must be specified in the blobconverter
+
+    python -m blobconverter --tensorflow-pb simple_frozen_graph.pb --optimizer-params --reverse_input_channels --input_shape=[1,66,200,3] --input=1:mul_1 --output=ArgMax --shaves 6
+
+    python3 -m blobconverter --tensorflow-pb simple_frozen_graph.pb --data_type=FP16 --mean_values=[127.5,127.5,127.5] --scale_values=[255,255,255] --input_shape=[1,66,200,3]
   
 ### Get data from the Raspberry Pi
 

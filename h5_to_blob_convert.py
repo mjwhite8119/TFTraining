@@ -33,3 +33,7 @@ tf.io.write_graph(graph_or_graph_def=frozen_func.graph,
                     logdir="./",
                     name="simple_frozen_graph.pb",
                     as_text=False)
+
+### STEP 6 - Use blobconverter.luxonis.com to convert to blob
+# --input_shape=[1,66,200,3] must be specified in the blobconverter Advanced options 
+# which is on the right hand side of the page.
